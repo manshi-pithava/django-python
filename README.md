@@ -6,21 +6,21 @@ A full-featured eCommerce web application built using Django.
 
 ## 🚀 Features
 
-- 👤 User Registration & Login
-- 🛍 Product Listing
-- 🔍 Product Search
-- 🛒 Add to Cart
-- 📦 Order Management
-- 🧑‍💼 Admin Dashboard
+- 👤 User Registration & Login  
+- 🛍 Product Listing  
+- 🔍 Product Search  
+- 🛒 Add to Cart  
+- 📦 Order Management  
+- 🧑‍💼 Admin Dashboard  
 
 ---
 
 ## 🛠 Tech Stack
 
-- Python 🐍
-- Django 🌐
-- HTML, CSS, Bootstrap 🎨
-- SQLite 🗄
+- Python 🐍  
+- Django 🌐  
+- HTML, CSS, Bootstrap 🎨  
+- SQLite 🗄  
 
 ---
 
@@ -36,16 +36,35 @@ venv\Scripts\activate
 pip install -r requirements.txt
 python manage.py runserver
 
-## 📸 Screenshots
+📸 Screenshots
+🏠 Home Page
 
-### 🏠 Home Page
-![Home](screenshots/adminhome.png)
-![Home](screenshots/homepage.png)
-![Home](screenshots/customers.png)
 
-### 🔐 Login Page
-![Login](screenshots/loginpage.png)
-![Registration](screenshots/registrationpage.png)
 
-### 🛒 Shop Page
-![Cart](screenshots/shop.png)
+
+
+
+🔐 Login & Registration
+
+
+
+
+🛒 Shop Page
+
+📂 Project Structure
+
+accounts → User authentication
+
+products → Product & cart logic
+
+admin_panel → Admin dashboard
+
+core → Main pages
+
+👩‍💻 Author
+
+Mansi Pithava
+
+⭐ Support
+
+If you like this project, give it a ⭐ on GitHub!
