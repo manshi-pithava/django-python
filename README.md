@@ -35,25 +35,3 @@ python -m venv venv
 venv\Scripts\activate
 pip install -r requirements.txt
 python manage.py runserver
-
-## 📸 Screenshots
-
-### 🏠 Home Page
-![Admin](https://raw.githubusercontent.com/manshi-pithava/django-python/main/screenshots/adminhome.png)
-![Home](https://raw.githubusercontent.com/manshi-pithava/django-python/main/screenshots/homepage.png)
-![Customers](https://raw.githubusercontent.com/manshi-pithava/django-python/main/screenshots/customers.png)
-
-### 🔐 Login & Registration
-![Login](https://raw.githubusercontent.com/manshi-pithava/django-python/main/screenshots/loginpage.png)
-![Register](https://raw.githubusercontent.com/manshi-pithava/django-python/main/screenshots/registerpage.png)
-
-### 🛒 Shop Page
-![Shop](https://raw.githubusercontent.com/manshi-pithava/django-python/main/screenshots/shop.png)
-
-👩‍💻 Author
-
-Mansi Pithava
-
-⭐ Support
-
-If you like this project, give it a ⭐ on GitHub!
