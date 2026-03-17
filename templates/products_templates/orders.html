@@ -1,0 +1,72 @@
+{% extends 'core_templates/base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="glass p-4">
+                <h2 class="text-center text-primary">My Orders</h2>
+                <table class="table table-hover table-bordered">
+                    <thead class="table-light text-center">
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Date</th>
+                            <th>Items</th>
+                            <th>Total Price</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if orders %}
+                            {% for order in orders %}
+                            <tr>
+                                <td class="text-center">#{{ order.id }}</td>
+                                <td class="text-center">{{ order.created_at|date:"d M Y, H:i" }}</td>
+                                <td>
+                                    <ul class="list-unstyled">
+                                        {% for item in order.order_items.all %}
+                                        <li class="d-flex align-items-center">
+                                            <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" width="50" height="50" class="rounded me-2 border">
+                                            {{ item.quantity }} x {{ item.product.name }}
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                </td>
+                                <td class="text-center">${{ order.total_price|floatformat:2 }}</td>
+                                <td class="text-center">
+                                    <span class="badge
+                                        {% if order.status == 'Delivered' %}bg-success
+                                        {% elif order.status == 'Shipped' %}bg-primary
+                                        {% elif order.status == 'Processing' %}bg-warning
+                                        {% else %}bg-secondary
+                                        {% endif %}">
+                                        {{ order.status|default:"Pending"}}
+                                    </span>
+                                </td>
+                              <td class="text-center">
+    <a href="{% url 'order_track' order.id %}" class="btn btn-sm btn-outline-primary">Track Order</a>
+
+    <!-- Delete Order Form -->
+    <form action="{% url 'delete_order' order.id %}" method="POST" class="d-inline">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure you want to delete this order?')">
+            Delete
+        </button>
+    </form>
+</td>
+
+                            </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td colspan="6" class="text-center text-muted">You have no orders yet.</td>
+                            </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

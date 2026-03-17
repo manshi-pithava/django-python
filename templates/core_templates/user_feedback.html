@@ -1,0 +1,38 @@
+{% extends 'core_templates/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+
+        <div class="col-md-6">
+
+            <div class="card shadow-lg p-4">
+                 <h2 class="text-center text-primary">User Feedback</h2>
+                <form method="POST" action="{% url 'submit_feedback' %}">
+                    {% csrf_token %}
+
+                    <div class="mb-3">
+                        <input type="text" name="name" id="name" class="form-control" placeholder="Enter your name" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="email" name="email" id="email" class="form-control" placeholder="Enter your email" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <textarea name="message" id="message" class="form-control" rows="5" placeholder="Write your feedback here..." required></textarea>
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="btn-custom btn-secondary ">Submit Feedback</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock %}

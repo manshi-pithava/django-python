@@ -1,0 +1,35 @@
+{% extends 'core_templates/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center">Search Results</h2>
+    
+    <form method="GET" action="{% url 'search' %}" class="mb-4">
+        <input type="text" name="q" class="form-control" placeholder="Search products..." value="{{ query }}">
+        <button type="submit" class="btn btn-primary mt-2">Search</button>
+    </form>
+
+    {% if results %}
+        <div class="row">
+            {% for product in results %}
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ product.name }}</h5>
+                            <p class="card-text">Price: ${{ product.price }}</p>
+                            <a href="{% url 'shop' %}" class="btn btn-success">View Product</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-center text-muted">No products found. Try searching for something else.</p>
+    {% endif %}
+    
+    <div class="text-center mt-4">
+        <a href="{% url 'shop' %}" class="btn btn-secondary">Back to Shop</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends 'admin_templates/admin_base.html' %}
+{% block content %}
+{% load static %}
+
+<div class="container">
+    <h2 class="text-center mb-4">Order Management</h2>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Order ID</th>
+                    <th>Customer</th>
+                    <th>Contact</th>
+                    <th>Shipment Address</th>
+                    <th>Products</th>
+                    <th>Images</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                <tr>
+                    <td>{{ order.id }}</td>
+                    <td>{{ order.user.username }}</td>
+                    <td>{{ order.user.userprofile.mobile }}</td>
+                    <td>{{ order.address }}</td>
+                    <td>
+                        {% for item in order.order_items.all %}
+                            {{ item.product.name }} (x{{ item.quantity }})<br>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% for item in order.order_items.all %}
+                            {% if item.product.image %}
+                                <img src="{{ item.product.image.url }}" height="40px" width="40px" class="rounded" alt="Product Image" />
+                            {% else %}
+                                <span>No Image</span>
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td>
+                        <form method="POST" action="{% url 'update_order_status' order.id %}" class="d-flex">
+                            {% csrf_token %}
+                            <select name="status" class="form-control me-2">
+                               <option value="Pending" {% if order.status == "Pending" %} selected {% endif %}>Pending</option>
+<option value="Out for Delivery" {% if order.status == "Out for Delivery" %} selected {% endif %}>Out for Delivery</option>
+<option value="Delivered" {% if order.status == "Delivered" %} selected {% endif %}>Delivered</option>
+<option value="Cancelled" {% if order.status == "Cancelled" %} selected {% endif %}>Cancelled</option>
+
+                            </select>
+                            <button type="submit" class="btn btn-primary btn-sm">Update</button>
+                        </form>
+                    </td>
+                    <td>
+                        <a href="{% url 'delete_order' order.id %}" class="btn btn-danger btn-sm"
+                            onclick="return confirm('Are you sure you want to delete this order?');">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

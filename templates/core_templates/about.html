@@ -1,0 +1,57 @@
+{% extends 'core_templates/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row align-items-center glass">
+        <!-- Left Side: Image -->
+        <div class="col-md-5">
+            <img src="{% static 'assets/images/about-img.png' %}" class="img-fluid rounded shadow" alt="About Us">
+        </div>
+
+        <!-- Right Side: Description -->
+        <div class="col-md-7">
+            <div class="about-content ">
+                <h2>About Our E-Commerce Shop</h2>
+                <p>
+                    Welcome to <strong>Eshop</strong>, your ultimate online shopping destination!
+                    We offer a seamless shopping experience with a wide range of high-quality
+                    products, from electronics to fashion and home essentials. Enjoy fast shipping,
+                    secure payments, and unbeatable prices.
+                </p>
+                <p>
+                    Our mission is to provide customers with the best online shopping experience,
+                    offering premium products, top-notch customer support, and exclusive deals.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Additional Info Section -->
+    <div class="info-section glass mt-5 p-4 rounded">
+        <h3>Why Shop With Us?</h3>
+        <ul>
+            <li>✔️ Wide range of high-quality products</li>
+            <li>✔️ Secure and hassle-free online shopping</li>
+            <li>✔️ Fast shipping and easy returns</li>
+            <li>✔️ 24/7 customer support</li>
+        </ul>
+    </div>
+
+    <!-- Contact Information Section -->
+    <div class="contact-info-section glass mt-4 p-4 rounded">
+        <h3>Contact Us</h3>
+        <p><strong>📍 Address:</strong> 1234 E-Commerce Street, Business City, Country</p>
+        <p><strong>📞 Phone:</strong> +1 234 567 890</p>
+        <p><strong>📧 Email:</strong> <a href="mailto:support@eshop.com">support@eshop.com</a></p>
+        <p><strong>🕒 Working Hours:</strong> Mon - Sat: 9 AM - 8 PM | Sun: Closed</p>
+
+        <!-- Social Media Links -->
+        <div class="social-icons mt-3">
+            <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </div>
+</div>
+{% endblock %}

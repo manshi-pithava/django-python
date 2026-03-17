@@ -1,0 +1,18 @@
+{% extends 'core_templates/base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="glass p-4 text-center">
+                <h2 class="text-primary">Fake Payment Gateway</h2>
+                <p>Total Amount: <strong>${{ total_amount }}</strong></p>
+                <form method="POST" action="{% url 'confirm_order' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="order_id" value="{{ order.id }}">
+                    <button type="submit" class="btn btn-success">Pay Now</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

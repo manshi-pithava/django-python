@@ -1,0 +1,43 @@
+{% extends 'admin_templates/admin_base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">User Feedback</h2>
+
+    <div class="card shadow-lg p-4">
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Message</th>
+                    <th>Date Submitted</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for feedback in feedback_list %}
+                <tr>
+                    <td>{{ feedback.id }}</td>
+                    <td>{{ feedback.name }}</td>
+                    <td>{{ feedback.email }}</td>
+                    <td>{{ feedback.message }}</td>
+                    <td>{{ feedback.created_at|date:"Y-m-d H:i" }}</td>
+                    <td>
+                        <a href="{% url 'delete_feedback' feedback.id %}" class="btn btn-danger btn-sm"
+                            onclick="return confirm('Are you sure you want to delete this feedback?');">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6" class="text-center">No feedback available</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

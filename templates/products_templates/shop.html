@@ -1,0 +1,114 @@
+{% extends 'core_templates/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container mt-5">
+    <!-- Scrollable Category Bar -->
+    <div class="category-bar-container">
+        <div class="category-bar glass">
+            <a class="category-item all-products" href="{% url 'shop' %}">All Products</a>
+            {% for category in categories %}
+            <a class="category-item" href="{% url 'shop_by_category' category.id %}">{{ category.name }}</a>
+            {% empty %}
+            <span class="category-item disabled">No categories available</span>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Product Listing -->
+    {% if products %}
+    <div class="row mt-5 justify-content-center">
+        {% for product in products %}
+        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+            <div class="card product-card glass shadow-lg">
+                <div class="image-container">
+                    <img src="{{ product.image.url }}"
+                         onerror="this.onerror=null; this.src='/static/assets/images/default-product.jpg';"
+                         alt="{{ product.name }}"
+                         class="rounded product-image">
+                </div>
+                <div class="card-body text-center">
+                    <h5 class="product-title">{{ product.name }}</h5>
+                    <p class="product-description">{{ product.description }}</p>
+                    <p class="product-price">$ {{ product.price }}</p>
+                    <a href="{% url 'add_to_cart' product.id %}" class="btn btn-primary btn-add">
+                        <i class="fa fa-shopping-cart"></i> Add to Cart
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="text-center no-products">No products available.</p>
+    {% endif %}
+</div>
+
+<!-- CSS Styling -->
+<style>
+    /* Category Bar with Scroll */
+    .category-bar-container {
+        overflow-x: auto;
+        white-space: nowrap;
+        padding-bottom: 10px;
+    }
+
+    .category-bar {
+        display: flex;
+        gap: 15px;
+        padding: 12px 20px;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(12px);
+        border-radius: 15px;
+        margin-bottom: 20px;
+        overflow-x: auto;
+    }
+
+    .category-item {
+        font-size: 1rem;
+        font-weight: bold;
+        color: #555;
+        padding: 10px 18px;
+        border-radius: 25px;
+        transition: all 0.3s;
+        text-decoration: none;
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    .category-item:hover, .category-item.all-products {
+        background: #ff6f61;
+        color: white;
+    }
+
+    .category-item.disabled {
+        opacity: 0.6;
+        pointer-events: none;
+    }
+
+    /* Product Card Styling */
+    .product-card {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(15px);
+        border-radius: 15px;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .product-image {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+    }
+
+    .btn-add {
+        background-color: #ff6f61;
+        border: none;
+        transition: 0.3s;
+    }
+
+    .btn-add:hover {
+        background-color: #e65b50;
+    }
+</style>
+
+{% endblock %}

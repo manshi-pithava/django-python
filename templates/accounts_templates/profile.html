@@ -1,0 +1,45 @@
+{% extends 'core_templates/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="glass p-4">
+                <h2 class="text-center text-primary">Profile Page</h2>
+<!--                <div class="text-center">-->
+<!--                    <img src="{% static 'assets/images/profile.png' %}" class="profile-img img-fluid rounded-circle" alt="Profile Image">-->
+<!--                </div>-->
+                <table class="table table-borderless mt-4">
+                    <tr>
+                        <th>Name:</th>
+                        <td>{{ user.first_name }} {{ user.last_name }}</td>
+                    </tr>
+                    <tr>
+                        <th>Username:</th>
+                        <td>{{ user.username }}</td>
+                    </tr>
+                    <tr>
+                        <th>Email:</th>
+                        <td>{{ user.email }}</td>
+                    </tr>
+                    <tr>
+                        <th>Mobile:</th>
+                        <td>{{ profile.mobile|default:"N/A" }}</td>
+                    </tr>
+                    <tr>
+                        <th>Address:</th>
+                        <td>{{ profile.address|default:"N/A" }}</td>
+                    </tr>
+
+                </table>
+                <div class="text-center mt-3">
+                    <a href="{% url 'logout' %}" class="btn-custom btn-danger">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends 'admin_templates/admin_base.html' %}
+{% load math_filters %}  {# Load custom filters #}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">📊 Admin Analytics Dashboard</h2>
+
+    <div class="row g-4">
+        <!-- Total Users -->
+        <div class="col-md-3">
+            <div class="card text-white bg-primary shadow-lg h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-users fa-2x mb-2"></i>
+                    <h5 class="card-title">Total Users</h5>
+                    <h3 class="card-text">{{ total_users }}</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Orders -->
+        <div class="col-md-3">
+            <div class="card text-white bg-success shadow-lg h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-shopping-cart fa-2x mb-2"></i>
+                    <h5 class="card-title">Total Orders</h5>
+                    <h3 class="card-text">{{ total_orders }}</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pending Orders -->
+        <div class="col-md-3">
+            <div class="card text-dark bg-warning shadow-lg h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-hourglass-half fa-2x mb-2"></i>
+                    <h5 class="card-title">Pending Orders</h5>
+                    <h3 class="card-text">{{ pending_orders }}</h3>
+                    <div class="progress mt-3" style="height: 8px;">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-dark" role="progressbar"
+                             style="width: {% if total_orders %}{{ pending_orders|div:total_orders|mul:100 }}{% else %}0{% endif %}%;"
+                             aria-valuenow="{{ pending_orders }}"
+                             aria-valuemin="0"
+                             aria-valuemax="{{ total_orders }}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Revenue -->
+        <div class="col-md-3">
+            <div class="card text-white bg-danger shadow-lg h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-dollar-sign fa-2x mb-2"></i>
+                    <h5 class="card-title">Total Revenue</h5>
+                    <h3 class="card-text">₹{{ total_revenue }}</h3>
+                    <div class="progress mt-3" style="height: 8px;">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-light text-dark" role="progressbar"
+                             style="width: {% if revenue_goal %}{{ total_revenue|div:revenue_goal|mul:100 }}{% else %}0{% endif %}%;"
+                             aria-valuenow="{{ total_revenue }}"
+                             aria-valuemin="0"
+                             aria-valuemax="{{ revenue_goal }}">
+                        </div>
+                    </div>
+                    <p class="small text-light mt-1">🎯 Goal: ₹{{ revenue_goal }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

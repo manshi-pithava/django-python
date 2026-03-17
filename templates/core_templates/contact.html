@@ -1,0 +1,46 @@
+{% extends 'core_templates/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="glass p-4">
+        <h2 class="text-center text-primary">Contact Us</h2>
+        <p class="text-center">We would love to hear from you! Feel free to reach out.</p>
+
+        <div class="row mt-4">
+            <!-- Contact Info -->
+            <div class="col-md-6">
+                <div class="contact-info-section">
+                    <h3>Get In Touch</h3>
+                    <p><strong>Email:</strong> support@yourshop.com</p>
+                    <p><strong>Phone:</strong> +1 234 567 890</p>
+                    <p><strong>Address:</strong> 123 Street, City, Country</p>
+
+                    <!-- Social Media -->
+                    <div class="social-icons">
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="col-md-6">
+                <form method="post" class="login-form glass p-4">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <input type="text" class="form-control" name="name" value="{{ user.get_full_name }}" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <input type="email" class="form-control" name="email" value="{{ user.email }}" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <textarea class="form-control" name="message" placeholder="Enter your message here" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-custom btn-secondary w-100">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

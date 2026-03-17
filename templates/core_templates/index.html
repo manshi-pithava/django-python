@@ -1,0 +1,107 @@
+{% extends 'core_templates/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container text-center mt-5">
+    <h1 class="main-heading">Welcome to Eshop</h1>
+
+    <!-- Slider Section -->
+    <section class="slider_section glass long_section">
+        <div id="customCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-md-5">
+                                <div class="detail-box">
+                                    <h2 class="slider-title">Your One-Stop Shop for <br> Premium Furniture</h2>
+                                    <p class="slider-text">Explore our wide selection of high-quality furniture to elevate your living space.</p>
+                                    <div class="btn-box">
+                                        <a href="{% url 'shop' %}" class="btn-custom btn-primary">Shop Now</a>
+                                        <a href="{% url 'contact' %}" class="btn-custom btn-secondary">Contact Us</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <img src="{% static 'assets/images/slider-img.png' %}" alt="Furniture Image" class="slider-img img-fluid">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Listing -->
+    {% if products %}
+    <div class="row mt-5 justify-content-center">
+        {% for product in products %}
+        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+            <div class="card product-card glass shadow-lg">
+                <div class="image-container">
+                   <img src="{{product.image.url }}"
+                                     onerror="this.onerror=null; this.src='/static/assets/images/default-product.jpg';"
+                                     alt="{{ product.name }}"
+                                     width="170" height="170" class="rounded">
+                </div>
+                <div class="card-body text-center">
+                    <h5 class="product-title">{{ product.name }}</h5>
+                    <p class="product-description">{{ product.description }}</p>
+                    <p class="product-price">$ {{ product.price }}</p>
+
+                    <a href="{% url 'add_to_cart' product.id %}" class="btn btn-primary btn-add">
+                        <i class="fa fa-shopping-cart"></i> Add to Cart
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="text-center no-products">No products available.</p>
+    {% endif %}
+</div>
+
+<!-- CSS Styling -->
+<style>
+    /* General Styling */
+    body {
+        background-color: #f5f5f5;
+    }
+
+    .main-heading {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    /* Slider Section */
+    .slider_section {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(12px);
+        border-radius: 20px;
+        padding: 40px;
+        margin-top: 20px;
+    }
+
+    .slider-title {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .slider-text {
+        font-size: 1.1rem;
+        color: #555;
+        margin-bottom: 15px;
+    }
+
+    .slider-img {
+        border-radius: 15px;
+        box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+</style>
+
+{% endblock %}

@@ -1,0 +1,113 @@
+{% extends 'admin_templates/admin_base.html' %}
+
+{% block extra_css %}
+<style>
+    /* Ensure default scrollbars appear when needed */
+    body {
+        overflow: auto; /* Enables default scrolling */
+    }
+
+    /* Prevent custom scrollbars */
+    ::-webkit-scrollbar {
+        width: auto; /* Keeps default width */
+    }
+
+    /* Scroll only when necessary */
+    .settings-container {
+        max-height: 90vh;
+        overflow-y: auto; /* Scrolls only when content overflows */
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4 settings-container">
+    <h2 class="text-center mb-4">
+        <i class="bi bi-gear-fill"></i> Admin Settings
+    </h2>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <div class="card shadow-lg p-4">
+            <!-- General Settings -->
+            <h4 class="mb-3">
+                <i class="bi bi-sliders"></i> General Settings
+            </h4>
+            <div class="mb-3">
+                <label class="form-label"><i class="bi bi-envelope-fill"></i> Admin Email:</label>
+                <input type="email" name="admin_email" class="form-control" value="admin@example.com" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label"><i class="bi bi-globe"></i> Website Name:</label>
+                <input type="text" name="site_name" class="form-control" value="E-Shop" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label"><i class="bi bi-link"></i> Website URL:</label>
+                <input type="url" name="site_url" class="form-control" value="http://127.0.0.1:8000" required>
+            </div>
+
+            <hr>
+
+            <!-- Security Settings -->
+            <h4 class="mb-3">
+                <i class="bi bi-shield-lock-fill"></i> Security Settings
+            </h4>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" name="enable_2fa" checked>
+                <label class="form-check-label"><i class="bi bi-lock-fill"></i> Enable Two-Factor Authentication (2FA)</label>
+            </div>
+
+            <div class="form-check form-switch mt-2">
+                <input class="form-check-input" type="checkbox" name="allow_admin_registration">
+                <label class="form-check-label"><i class="bi bi-person-plus-fill"></i> Allow New Admin Registrations</label>
+            </div>
+
+            <div class="mb-3 mt-3">
+                <label class="form-label"><i class="bi bi-hourglass-split"></i> Session Timeout (minutes):</label>
+                <input type="number" name="session_timeout" class="form-control" value="30" min="5" max="120">
+            </div>
+
+            <hr>
+
+            <!-- Notifications -->
+            <h4 class="mb-3">
+                <i class="bi bi-bell-fill"></i> Notification Settings
+            </h4>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" name="email_notifications" checked>
+                <label class="form-check-label"><i class="bi bi-envelope-paper-fill"></i> Enable Email Notifications</label>
+            </div>
+
+            <div class="form-check form-switch mt-2">
+                <input class="form-check-input" type="checkbox" name="sms_notifications">
+                <label class="form-check-label"><i class="bi bi-chat-text-fill"></i> Enable SMS Notifications</label>
+            </div>
+
+            <div class="form-check form-switch mt-2">
+                <input class="form-check-input" type="checkbox" name="push_notifications" checked>
+                <label class="form-check-label"><i class="bi bi-phone-vibrate-fill"></i> Enable Push Notifications</label>
+            </div>
+
+            <hr>
+
+            <!-- Maintenance Mode -->
+            <h4 class="mb-3">
+                <i class="bi bi-tools"></i> Maintenance Mode
+            </h4>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" name="maintenance_mode">
+                <label class="form-check-label"><i class="bi bi-cone-striped"></i> Enable Maintenance Mode</label>
+            </div>
+            <p class="text-muted small"><i class="bi bi-info-circle"></i> When enabled, only admins can access the site.</p>
+
+            <!-- Save Button -->
+            <button type="submit" class="btn btn-primary mt-3">
+                <i class="bi bi-save-fill"></i> Save Changes
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'core_templates/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="glass p-4">
+                <h2 class="text-center text-primary">My Cart</h2>
+                <table class="table table-bordered">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Product</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in cart_items %}
+                        <tr>
+                            <!-- ✅ Correctly Displaying Product Image -->
+                            <td>
+                                <img src="{{ item.product.image.url }}"
+                                     onerror="this.onerror=null; this.src='/static/assets/images/default-product.jpg';"
+                                     alt="{{ item.product.name }}"
+                                     width="60" height="60" class="rounded">
+                            </td>
+                            <td>{{ item.product.name }}</td>
+                            <td>${{ item.product.price|floatformat:2 }}</td>
+                            <td>{{ item.quantity }}</td>
+                            <td>${{ item.total_price|floatformat:2 }}</td>
+                            <td>
+                                <a href="{% url 'remove_from_cart' item.id %}" class="btn btn-danger btn-sm">Remove</a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="6" class="text-center text-muted">Your cart is empty.</td>
+                        </tr>
+                        {% endfor %}
+
+                        <!-- Cart Summary Inside Table -->
+                        {% if cart_items %}
+                        <tr class="table-light">
+                            <td colspan="4" class="text-end fw-bold">Total Amount:</td>
+                            <td class="text-success fw-bold fs-5">${{ final_total|floatformat:2 }}</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td colspan="6" class="text-center">
+                                <a href="{% url 'checkout' %}" class="btn btn-primary me-2">Proceed to Checkout</a>
+                                <a href="{% url 'shop' %}" class="btn btn-outline-secondary">Continue Shopping</a>
+                            </td>
+                        </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
