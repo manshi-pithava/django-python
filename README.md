@@ -23,7 +23,7 @@ A full-featured eCommerce web application built using Django.
 - SQLite 🗄  
 
 ---
-
+~~~md
 ## ⚙️ Installation & Setup
 
 Follow these steps to run the project locally:
