@@ -36,30 +36,19 @@ venv\Scripts\activate
 pip install -r requirements.txt
 python manage.py runserver
 
-📸 Screenshots
-🏠 Home Page
+## 📸 Screenshots
 
+### 🏠 Home Page
+![Admin](https://raw.githubusercontent.com/manshi-pithava/django-python/main/screenshots/adminhome.png)
+![Home](https://raw.githubusercontent.com/manshi-pithava/django-python/main/screenshots/homepage.png)
+![Customers](https://raw.githubusercontent.com/manshi-pithava/django-python/main/screenshots/customers.png)
 
+### 🔐 Login & Registration
+![Login](https://raw.githubusercontent.com/manshi-pithava/django-python/main/screenshots/loginpage.png)
+![Register](https://raw.githubusercontent.com/manshi-pithava/django-python/main/screenshots/registerpage.png)
 
-
-
-
-🔐 Login & Registration
-
-
-
-
-🛒 Shop Page
-
-📂 Project Structure
-
-accounts → User authentication
-
-products → Product & cart logic
-
-admin_panel → Admin dashboard
-
-core → Main pages
+### 🛒 Shop Page
+![Shop](https://raw.githubusercontent.com/manshi-pithava/django-python/main/screenshots/shop.png)
 
 👩‍💻 Author
 
