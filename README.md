@@ -39,13 +39,13 @@ python manage.py runserver
 ## 📸 Screenshots
 
 ### 🏠 Home Page
-![Home](screenshotes/adminhome.png)
-![Home](screenshotes/homepage.png)
-![Home](screenshotes/customers.png)
+![Home](screenshots/adminhome.png)
+![Home](screenshots/homepage.png)
+![Home](screenshots/customers.png)
 
 ### 🔐 Login Page
-![Login](screenshotes/loginpage.png)
-![Registration](screenshotes/registrationpage.png)
+![Login](screenshots/loginpage.png)
+![Registration](screenshots/registrationpage.png)
 
 ### 🛒 Shop Page
-![Cart](screenshotes/shop.png)
+![Cart](screenshots/shop.png)
